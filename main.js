@@ -17,7 +17,7 @@ function showInfo(data, tabletop) {
     var lastName = userData[0].lName;
     var houseAddress = userData[0].hAddress;
 
-    document.getElementById(' js-userFirstName').innerHTML = firstName;
-    document.getElementById(' js-userLastName').innerHTML = lastName;
-    document.getElementById(' js-userAddress').innerHTML = houseAddress;
+    document.getElementById('js-userFirstName').innerHTML = firstName;
+    document.getElementById('js-userLastName').innerHTML = lastName;
+    document.getElementById('js-userAddress').innerHTML = houseAddress;
 }
