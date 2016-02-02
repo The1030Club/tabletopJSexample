@@ -2,31 +2,45 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="normalize.css"/>
-    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="styles/normalize.css"/>
+    <link rel="stylesheet" href="styles/main.css"/>
     <title>TabletopJS</title>
 </head>
 <body>
 
 <div class="content-wrapper">
-    <nav class="grid grid-12-12"></nav>
+    <nav class="grid grid-12-12">
+        <ul class="nav-list">
+            <li class="nav-btn"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-btn"><a class="nav-link" href="#">Blog</a></li>
+            <li class="nav-btn"><a class="nav-link" href="#">Away</a></li>
+        </ul>
+    </nav>
 
-    <section class="profile grid grid-3-12">
+    <section class="profile grid grid-2-12">
         <h1 id="js-userFirstName"></h1>
         <h1 id="js-userLastName"></h1>
         <h1 id="js-userAddress"></h1>
+        <h1 id="js-userFirstName"></h1>
+        <h1 id="js-userLastName"></h1>
+        <h1 id="js-userAddress"></h1>
+        <h1 id="js-homeWalkthroughDate"></h1>
+        <img id="js-homeImg"></>
+        <h1 id="js-homeSqFt"></h1>
+        <h1 id="js-homeAge"></h1>
+        <h1 id="js-utilitySuppliers"></h1>
     </section>
 
-    <section class="information grid grid-6-12">
+    <section class="information grid grid-8-12">
         <h1>Banana</h1>
     </section>
 
-    <section class="grid grid-3-12">
+    <section class="grid grid-2-12">
         <h1>Blog</h1>
     </section>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.2/tabletop.min.js"></script>
-<script src="main.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>
