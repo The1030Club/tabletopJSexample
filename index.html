@@ -2,36 +2,41 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="styles/normalize.css"/>
+    <link rel="stylesheet" href="styles/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="styles/bootstrap.min.css"/>
     <link rel="stylesheet" href="styles/main.css"/>
     <title>TabletopJS</title>
 </head>
 <body>
 
-<div class="user-login-wrapper">
-    <input id="js-userInputE" type="email"/>
-    <input id="js-userInputHN" type="password"/>
-    <button id="js-userInputBtn">Knock Knock</button>
-    <h1 id="js-errorLogin"></h1>
+<div id="js-loginWrapper" class="user-login-wrapper">
+    <input id="js-userInputE" type="email" placeholder="Email" class="center-block js-clearHTML"/>
+    <input id="js-userInputHN" type="password" placeholder="House Number" class="center-block js-clearHTML"/>
+    <button id="js-userInputBtn" class="center-block">Knock Knock</button>
+    <h1 id="js-errorLogin" class="bg-danger center-block"></h1>
 </div>
 
-<div class="user-content-wrapper">
-    <div class="user_basic-info">
+<div id="js-logoutWrapper" class="user-logout-wrapper hidden">
+    <button id="js-LogoutBtn" class="center-block">Logout</button>
+</div>
+
+<div class="user-content-wrapper row">
+    <div class="user_basic-info col-md-4">
         <h1 id="js-userName" class="js-clearHTML"></h1>
         <h1 id="js-userEM" class="js-clearHTML"></h1>
         <h1 id="js-userHN" class="js-clearHTML"></h1>
         <h1 id="js-userSA" class="js-clearHTML"></h1>
         <h1 id="js-userWT" class="js-clearHTML"></h1>
-        <img id="js-homeImg" class="js-clearHTML" src=""/>
+        <img id="js-homeImg" class="js-clearHTML img-circle user-profile-img" src=""/>
     </div>
 
-    <div class="user_rec-info">
+    <div class="user_rec-info col-md-4">
         <h2 id="js-userRecOne" class="js-clearHTML"></h2>
         <h2 id="js-userRecTwo" class="js-clearHTML"></h2>
         <h2 id="js-userRecThree" class="js-clearHTML"></h2>
     </div>
 
-    <div class="user_product-info">
+    <div class="user_product-info col-md-4">
         <h2 id="js-userProdOne" class="js-clearHTML"></h2>
         <h2 id="js-userProdTwo" class="js-clearHTML"></h2>
         <h2 id="js-userProdThree" class="js-clearHTML"></h2>

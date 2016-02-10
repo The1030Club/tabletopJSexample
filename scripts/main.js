@@ -6,6 +6,7 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1nU7WVSIiNG
 // placeholders for the login btn and error message
 var loginBtn = document.getElementById('js-userInputBtn');
 var loginErrorMessage = document.getElementById('js-errorLogin');
+var logoutBtn = document.getElementById('js-LogoutBtn');
 
 // stores all of our spreadsheet data in an array of objects
 var userData = [];
@@ -47,18 +48,35 @@ function loginCheck(){
     var USERNAME = document.getElementById( 'js-userInputE' ).value;
     var PASSWORD = document.getElementById( 'js-userInputHN' ).value;
 
+    var loginWrapper = document.getElementById('js-loginWrapper');
+    var logoutWrapper = document.getElementById('js-logoutWrapper');
+
+
     for (var i = 0; i < userData.length; i++){
         // loop through the user objects in our userData array and check if any of the
         // emails and house numbers match. Sudo password lol
         if((userData[i].email === USERNAME) && (userData[i].house_number === PASSWORD)){
             loginErrorMessage.innerHTML = ''; // clear error message in case of 2 attempt
             displayInfo(userData[i]);         // pass the object into the displayinfo func
+            loginWrapper.className = 'user-login-wrapper hidden';
+            logoutWrapper.className = 'show';
             return;                           // bounce out
         } else {
             clearHTML(); // clears all the content and throws error
             loginErrorMessage.innerHTML = 'that login is wrong bruh';
         }
     }
+}
+
+
+// logout function which essentially just shows and hides content
+function logout() {
+    var loginWrapper = document.getElementById('js-loginWrapper');
+    var logoutWrapper = document.getElementById('js-logoutWrapper');
+
+    clearHTML();
+    loginWrapper.className = 'user-login-wrapper show';
+    logoutWrapper.className = 'user-logout-wrapper hidden';
 }
 
 // displays the user's information after a successful authentication
@@ -94,3 +112,4 @@ function displayInfo(activeUser) {
 }
 
 loginBtn.onclick = loginCheck;
+logoutBtn.onclick = logout;
