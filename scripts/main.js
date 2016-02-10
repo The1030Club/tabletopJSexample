@@ -1,37 +1,82 @@
 window.onload = function() { init() };
 
-var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1eIhUlNg5-Vl3xGmH23CabHPjibCVIKG47kzHyUeEeCc/pubhtml?gid=0&single=true';
+// spreadsheet for the tabletop js
+var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1nU7WVSIiNGD7OSQpZQMFqTpGiaxlB46kfNrVSM26fuA/pubhtml';
+
+// placeholders for the login btn and error message
+var loginBtn = document.getElementById('js-userInputBtn');
+var loginErrorMessage = document.getElementById('js-errorLogin');
+
+// stores all of our spreadsheet data in an array of objects
 var userData = [];
 
+// this array is used to collect all the elements we want to eliminate the content from
+// in the clearHTML() function
+var clearAllContent = [];
+
+
+// initializing tabletop js
 function init() {
     Tabletop.init( { key: public_spreadsheet_url,
         callback: showInfo,
         simpleSheet: true } )
 }
 
+
+// grabs the information from the tabletop spreadsheet and populates the userData array
 function showInfo(data, tabletop) {
     for(i = 0; i < data.length; i++){
         userData.push(data[i]);
     }
 }
 
-function displayInfo() {
-    var firstName =           userData[0].last_name;
-    var lastName =            userData[0].first_name;
-    var houseAddress =        userData[0].home_address;
-    var userId =              userData[0].user_id;
-    var homeWalkthroughDate = userData[0].home_walkthrough_date;
-    var homeImg =             userData[0].home_img;
-    var homeSqFt =            userData[0].home_sq_feet;
-    var homeAge =             userData[0].home_age;
-    var utilitySuppliers =    userData[0].utility_suppliers;
 
-    document.getElementById('js-userFirstName').innerHTML       = firstName;
-    document.getElementById('js-userLastName').innerHTML        = lastName;
-    document.getElementById('js-userAddress').innerHTML         = houseAddress;
-    document.getElementById('js-homeWalkthroughDate').innerHTML = homeWalkthroughDate;
-    document.getElementById('js-homeImg').src                   = "img/" + homeImg;
-    document.getElementById('js-homeSqFt').innerHTML            = homeSqFt;
-    document.getElementById('js-homeAge').innerHTML             = homeAge;
-    document.getElementById('js-utilitySuppliers').innerHTML    = utilitySuppliers;
+// function that clears all of the HTML on the elements tagged with the js-clearHTML class
+function clearHTML(){
+    clearAllContent = document.getElementsByClassName('js-clearHTML');
+    for ( var i = 0; i < clearAllContent.length; i++){
+        clearAllContent[i].innerHTML = ''; // deletes all HTML
+        clearAllContent[i].src = '';       // deletes all images
+    }
 }
+
+
+// ghetto login script that checks if the email and house number match their user object
+// this is not secure at all it is just for v1
+function loginCheck(){
+    var USERNAME = document.getElementById( 'js-userInputE' ).value;
+    var PASSWORD = document.getElementById( 'js-userInputHN' ).value;
+
+    for (var i = 0; i < userData.length; i++){
+        // loop through the user objects in our userData array and check if any of the
+        // emails and house numbers match. Sudo password lol
+        if((userData[i].email === USERNAME) && (userData[i].house_number === PASSWORD)){
+            loginErrorMessage.innerHTML = ''; // clear error message in case of 2 attempt
+            displayInfo(userData[i]);         // pass the object into the displayinfo func
+            return;                           // bounce out
+        } else {
+            clearHTML(); // clears all the content and throws error
+            loginErrorMessage.innerHTML = 'that login is wrong bruh';
+        }
+    }
+}
+
+// displays the user's information after a successful authentication
+function displayInfo(activeUser) {
+    var firstName           = activeUser.first_name;
+    var lastName            = activeUser.last_name;
+    //var email               = activeUser.email;
+    //var houseNumber         = activeUser.house_number;
+    var streetAddress       = activeUser.street_address;
+    var homeWalkthroughDate = activeUser.home_walkthrough_date;
+    var homeImg             = activeUser.home_img;
+
+    document.getElementById('js-userName').innerHTML = firstName + ' ' + lastName;
+    //document.getElementById('js-userEM').innerHTML = email;
+    //document.getElementById('js-userHN').innerHTML = houseNumber;
+    document.getElementById('js-userSA').innerHTML = streetAddress;
+    document.getElementById('js-userWT').innerHTML = homeWalkthroughDate;
+    document.getElementById('js-homeImg').src      = "img/" + homeImg;
+}
+
+loginBtn.onclick = loginCheck;
