@@ -65,18 +65,32 @@ function loginCheck(){
 function displayInfo(activeUser) {
     var firstName           = activeUser.first_name;
     var lastName            = activeUser.last_name;
-    //var email               = activeUser.email;
-    //var houseNumber         = activeUser.house_number;
     var streetAddress       = activeUser.street_address;
     var homeWalkthroughDate = activeUser.home_walkthrough_date;
     var homeImg             = activeUser.home_img;
+    var recOne              = activeUser.rec_one;
+    var recTwo              = activeUser.rec_two;
+    var recThree            = activeUser.rec_three;
+    var prodOne             = activeUser.prod_one;
+    var prodTwo             = activeUser.prod_two;
+    var prodThree           = activeUser.prod_three;
 
+
+    // Users Basic Info Panel
     document.getElementById('js-userName').innerHTML = firstName + ' ' + lastName;
-    //document.getElementById('js-userEM').innerHTML = email;
-    //document.getElementById('js-userHN').innerHTML = houseNumber;
-    document.getElementById('js-userSA').innerHTML = streetAddress;
-    document.getElementById('js-userWT').innerHTML = homeWalkthroughDate;
-    document.getElementById('js-homeImg').src      = "img/" + homeImg;
+    document.getElementById('js-userSA').innerHTML   = streetAddress;
+    document.getElementById('js-userWT').innerHTML   = homeWalkthroughDate;
+    document.getElementById('js-homeImg').src        = "img/" + homeImg;
+
+    // Users Recommendation Panel
+    document.getElementById('js-userRecOne').innerHTML   = recOne;
+    document.getElementById('js-userRecTwo').innerHTML   = recTwo;
+    document.getElementById('js-userRecThree').innerHTML = recThree;
+
+    // Users Product Panel
+    document.getElementById('js-userProdOne').innerHTML   = prodOne;
+    document.getElementById('js-userProdTwo').innerHTML   = prodTwo;
+    document.getElementById('js-userProdThree').innerHTML = prodThree;
 }
 
 loginBtn.onclick = loginCheck;
