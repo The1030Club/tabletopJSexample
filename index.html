@@ -9,25 +9,29 @@
 </head>
 <body>
 
-<div id="js-loginWrapper" class="user-login-wrapper">
-    <input id="js-userInputE" type="email" placeholder="Email" class="center-block js-clearHTML"/>
-    <input id="js-userInputHN" type="password" placeholder="House Number" class="center-block js-clearHTML"/>
-    <button id="js-userInputBtn" class="center-block">Knock Knock</button>
-    <h1 id="js-errorLogin" class="bg-danger center-block"></h1>
-</div>
+
+<header class="main-header">
+    <h1 class="main-header-text">Welcome to <span class="header-accent">District Dwelling</span></h1>
+
+    <div id="js-loginWrapper" class="user-login-wrapper">
+        <input  id="js-userInputE"  type="email"    placeholder="Email"        class="center-block js-clearHTML input-btn"/>
+        <input  id="js-userInputHN" type="password" placeholder="House Number" class="center-block js-clearHTML input-btn"/>
+        <button id="js-userInputBtn" class="center-block login-btn">Knock Knock</button>
+        <h1 id="js-errorLogin" class="center-block log-in-error"></h1>
+    </div>
+</header>
 
 <div id="js-logoutWrapper" class="user-logout-wrapper hidden">
-    <button id="js-LogoutBtn" class="center-block">Logout</button>
+    <button id="js-LogoutBtn" class="center-block login-btn">Logout</button>
 </div>
 
 <div class="user-content-wrapper row">
     <div class="user_basic-info col-md-4">
         <h1 id="js-userName" class="js-clearHTML"></h1>
-        <h1 id="js-userEM" class="js-clearHTML"></h1>
         <h1 id="js-userHN" class="js-clearHTML"></h1>
         <h1 id="js-userSA" class="js-clearHTML"></h1>
         <h1 id="js-userWT" class="js-clearHTML"></h1>
-        <img id="js-homeImg" class="js-clearHTML img-circle user-profile-img" src=""/>
+        <img id="js-homeImg" class="js-clearHTML user-profile-img" src=""/>
     </div>
 
     <div class="user_rec-info col-md-4">
@@ -43,7 +47,7 @@
     </div>
 </div>
 
-
+<!--Loading scripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.4.2/tabletop.min.js"></script>
 <script src="scripts/main.js"></script>
 </body>
