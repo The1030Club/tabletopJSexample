@@ -7,6 +7,7 @@ var public_spreadsheet_url = 'https://docs.google.com/spreadsheets/d/1nU7WVSIiNG
 var loginBtn = document.getElementById('js-userInputBtn');
 var loginErrorMessage = document.getElementById('js-errorLogin');
 var logoutBtn = document.getElementById('js-LogoutBtn');
+var profileContentWrapper = document.getElementById('js-showHideContent');
 
 // stores all of our spreadsheet data in an array of objects
 var userData = [];
@@ -38,7 +39,38 @@ function clearHTML(){
     for ( var i = 0; i < clearAllContent.length; i++){
         clearAllContent[i].innerHTML = ''; // deletes all HTML
         clearAllContent[i].src = '';       // deletes all images
+        clearAllContent[i].value = '';        // clears all input fields
     }
+}
+
+// fade out function to toggle opacity. This was adapted from Chris Buttery's example
+// which you can find here : http://www.chrisbuttery.com/articles/fade-in-fade-out-with-javascript/
+
+function fadeOut(el){
+    el.style.opacity = 1;
+
+    (function fade() {
+        if ((el.style.opacity -= .01) < 0) {
+            el.style.display = "none";
+        } else {
+            requestAnimationFrame(fade);
+        }
+    })();
+}
+
+// fade in
+
+function fadeIn(el, display){
+    el.style.opacity = 0;
+    el.style.display = display || "block";
+
+    (function fade() {
+        var val = parseFloat(el.style.opacity);
+        if (!((val += .01) > 1)) {
+            el.style.opacity = val;
+            requestAnimationFrame(fade);
+        }
+    })();
 }
 
 
@@ -60,6 +92,7 @@ function loginCheck(){
             displayInfo(userData[i]);         // pass the object into the displayinfo func
             loginWrapper.className = 'user-login-wrapper hidden';
             logoutWrapper.className = 'show';
+            fadeIn(profileContentWrapper);
             return;                           // bounce out
         } else {
             clearHTML(); // clears all the content and throws error
@@ -74,6 +107,7 @@ function logout() {
     var loginWrapper = document.getElementById('js-loginWrapper');
     var logoutWrapper = document.getElementById('js-logoutWrapper');
 
+    fadeOut(profileContentWrapper);
     clearHTML();
     loginWrapper.className = 'user-login-wrapper show';
     logoutWrapper.className = 'user-logout-wrapper hidden';
